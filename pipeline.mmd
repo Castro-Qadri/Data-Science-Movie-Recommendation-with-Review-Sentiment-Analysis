@@ -1,0 +1,14 @@
+flowchart TD
+    A[tmdb_5000_movies.csv + tmdb_5000_credits.csv] --> B[Preprocessing & feature extraction]
+    B --> C[TF-IDF vectorizer (tags/overview/genres/cast/crew)]
+    C --> D[Similarity computation (linear_kernel) -> similarity.joblib]
+    D --> E[Streamlit app (WebApp.py) loads movies_data.joblib + similarity.joblib]
+
+    F[IMDB Dataset.csv] --> G[Sentiment preprocessing (cleaning)]
+    G --> H[TF-IDF for reviews]
+    H --> I[Train classifiers (LogisticRegression, MultinomialNB)]
+    I --> J[Save best model -> sentiment_analysis_model.pkl]
+    I --> K[Evaluation: confusion matrix, ROC]
+
+    style A fill:#f9f,stroke:#333,stroke-width:1px
+    style F fill:#ff9,stroke:#333,stroke-width:1px
